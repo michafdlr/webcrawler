@@ -1,5 +1,6 @@
 const { argv } = require('node:process');
 const { crawlPage } = require('./crawl');
+const { createReport } = require('./report');
 
 async function main(){
   if (argv.length > 3){
@@ -12,7 +13,7 @@ async function main(){
   console.log(`Start crawling at ${baseURL}`)
 
   const pages = await crawlPage(baseURL, baseURL, {})
-  console.log(pages)
+  createReport(pages)
 }
 
 main()
