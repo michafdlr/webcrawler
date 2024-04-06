@@ -1,6 +1,7 @@
 const { argv } = require('node:process');
+const { crawlPage } = require('./crawl');
 
-function main(){
+async function main(){
   if (argv.length > 3){
     throw new Error('Too many arguments given')
   }
@@ -9,6 +10,8 @@ function main(){
   }
   const baseURL = argv[2]
   console.log(`Start crawling at ${baseURL}`)
+
+  await crawlPage(baseURL)
 }
 
 main()

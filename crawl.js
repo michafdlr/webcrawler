@@ -32,7 +32,24 @@ function normalizeURL(url) {
   return normalizedUrl
 }
 
+async function crawlPage(baseURL){
+  try{
+    const response = await fetch(baseURL)
+    if (response.status>=400){
+      throw new Error(`Client error with statuscode ${response.status}`)
+    }
+    const contentType = response.headers.get('content-type')
+    if (!contentType.includes('text/html')){
+      console.log(`Got non-html response ${contentType}`)
+    }
+    console.log(await response.text())
+}catch(err){
+  console.log(err.message)
+}
+}
+
 module.exports = {
   normalizeURL,
-  getURLsFromHTML
+  getURLsFromHTML,
+  crawlPage
 }
