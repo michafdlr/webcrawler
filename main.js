@@ -11,7 +11,8 @@ async function main(){
   const baseURL = argv[2]
   console.log(`Start crawling at ${baseURL}`)
 
-  await crawlPage(baseURL)
+  const pages = await crawlPage(baseURL, baseURL, {})
+  console.log(pages)
 }
 
 main()
